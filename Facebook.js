@@ -24,7 +24,7 @@ favoritesA.append(favoritesimg);
 favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
-    
+/////////////////////////////////////////////////////////////////////////////////////////////    
 var buttonContainers = $(document.getElementsByClassName("_5pcp _5vsi")).children("div");
 var button = $(document.createElement('label'));
 var input = $(document.createElement("input"));
@@ -46,10 +46,12 @@ input.attr({
 button.append(input);
 buttonContainers.append(button);
 
-$(document).scroll(function () {
-   if(buttonContainers.has(button)===true){
-       buttonContainers.append(input);
-   }
+
+
+$(document).scroll(function() {
+   if(buttonContainers.contains(button)){
+       console.log("has button"); 
+       }
     else{
         buttonContainers.append(button);
     }

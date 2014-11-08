@@ -24,8 +24,33 @@ favoritesA.append(favoritesimg);
 favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
-console.log($("#fbFavoritesJewel")),
     
-var buttonContainer = $(document.getElementsByClassName("._5pcp _5vsi"));
+var buttonContainers = $(document.getElementsByClassName("_5pcp _5vsi")).children("div");
 var button = $(document.createElement('label'));
+var input = $(document.createElement("input"));
 
+button.attr({
+    class:"uiLinkButton",
+    title:"Bookmark this"
+});
+button.css({
+    float: "right"
+});
+
+input.attr({
+    class:"uiLinkButtonInput",
+    type:"button",
+    value: "Bookmark"
+});
+
+button.append(input);
+buttonContainers.append(button);
+
+$(document).scroll(function () {
+   if(buttonContainers.has(button)===true){
+       buttonContainers.append(input);
+   }
+    else{
+        buttonContainers.append(button);
+    }
+});

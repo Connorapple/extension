@@ -1,16 +1,31 @@
-var favoritesDiv = $('<div class="uiToggle _4962" id="fbFavoritesJewel"></div>');
-var favoritesA = $('<a class="jewelButton" href="#" rel="toggle" role="button" name="favorites" aria-haspopup="true" aria-owns="fbFavoritesFlyout"></a>');
+var jewelContainer = $(document.getElementsByClassName("_3t_z notifCentered notifGentleAppReceipt")); 
+console.log(jewelContainer);
+var favoritesJewel = $(document.createElement('div'));
+var favoritesA = $(document.createElement('a'));
+var favoritesimg = $(document.createElement('img'));
 
-favoritesDiv.append(favoritesA);
-
-$(document).ready(function{
- 
-    $("._3t_z .notifCentered .notifGentleAppReceipt").append(favoritesDiv);
-
-
+favoritesJewel.attr({
+   class:"uiToggle _4962",
+   id:"fbFavoritesJewel"
+    
+});
+favoritesA.attr({
+   class:"jewelbutton",
+    href:"#",
+    role:"button",
+    "aria-haspopup":"true"
+});
+favoritesimg.attr({
+   src: chrome.extension.getURL('img/bookmarkButton.png')
 });
 
 
+favoritesA.append(favoritesimg);
+favoritesJewel.append(favoritesA);
+jewelContainer.append(favoritesJewel);
 
-
+console.log($("#fbFavoritesJewel")),
+    
+var buttonContainer = $(document.getElementsByClassName("._5pcp _5vsi"));
+var button = $(document.createElement('label'));
 

@@ -109,11 +109,11 @@ function getId(button) {
   var timeStamp = postLink.children("abbr").attr("title");
   var href = postLink.attr("href");
 
-  var nameItems = post.find(".fwb.fcg").find('*');
+  var nameItems = (post.find(".fwb.fcg")[0]).getElementsByTagName("*");
   var name = "";
 
   console.log(nameItems.length);
-  for (var i = nameItems.length - 1; i >= 0; i--) {
+  for (var i = 0; i < nameItems.length; i++) {
     console.log($(nameItems[i]).text());
     name = name + $(nameItems[i]).text() + " ";
   };
@@ -137,17 +137,6 @@ chrome.storage.sync.get("links", function(items) {
     $("#bookmarksList").append("<li><a href='" +  links[i] + "'>LINK</a></li>");
   };
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

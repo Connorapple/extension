@@ -57,28 +57,15 @@ $(document).scroll(function() {
 
   if (dateCheck - lastDateCheck > 1000) {
     buttonContainers = $("._5pcp._5vsi").children("div");
+    var buttonsNeedingEdits = [];
 
     for (var i = buttonContainers.length - 1; i >= 0; i--) {
       if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
-        $(buttonContainers[i]).css("color", "red");
-        var label = $("<label class='uiLinkButton postBookmarkButton' title='Bookmark this' style='float:right;><input class='uiLinkButtonInput' type='button' value='Bookmark'></label>");
-        $(buttonContainers[i]).append(label);
-        console.log(button);
+        buttonsNeedingEdits.push($(buttonContainers[i]));
       }
     };
 
-    // var editedButtons = $("._5pcp._5vsi div:contains('.postBookmarkButton')");
-    // console.log(editedButtons.length);
-    // for (var i = buttonContainers.length - 1; i >=0 ; i--) {
-
-    //   if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
-    //     console.log("false");
-    //     $(buttonContainers[i]).append(button);
-    //   } else {
-    //     console.log("true");
-    //   }
-    // };
-
+    button.appendTo(buttonsNeedingEdits);
     lastDateCheck = dateCheck;
   };
 });

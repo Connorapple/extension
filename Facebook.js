@@ -59,7 +59,12 @@ $(document).scroll(function() {
     buttonContainers = $("._5pcp._5vsi").children("div");
 
     for (var i = buttonContainers.length - 1; i >= 0; i--) {
-      console.log(buttonContainers[i]);
+      if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
+        $(buttonContainers[i]).css("color", "red");
+        var label = $("<label class='uiLinkButton postBookmarkButton' title='Bookmark this' style='float:right;><input class='uiLinkButtonInput' type='button' value='Bookmark'></label>");
+        $(buttonContainers[i]).append(label);
+        console.log(button);
+      }
     };
 
     // var editedButtons = $("._5pcp._5vsi div:contains('.postBookmarkButton')");

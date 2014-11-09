@@ -39,7 +39,7 @@ button.css({
 });
 
 input.attr({
-    class:"uiLinkButtonInput",
+    class:"uiLinkButtonInput postBookmarkButton",
     type:"button",
     value: "Bookmark"
 });
@@ -51,10 +51,13 @@ post.append(buttonContainers);
 
 $(document).scroll(function() {
   buttonContainers = $("._5pcp._5vsi");
-  for (var i = post.length -1; i >=0 ; i--) {
-    if ($.contains($(post[i]), button) == false) {
-      console.log("add button");
+  for (var i = buttonContainers.length -1; i >=0 ; i--) {
+    console.log($(buttonContainers[i]).children(".postBookmarkButton").length);
+    if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
+      console.log("false");
       $(post[i]).append(button);
+    } else {
+      console.log("true");
     }
   };
 });

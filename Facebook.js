@@ -1,4 +1,4 @@
-var jewelContainer = $(document.getElementsByClassName("_3t_z notifCentered notifGentleAppReceipt")); 
+var jewelContainer = $("._3t_z.notifCentered.notifGentleAppReceipt"); 
 console.log(jewelContainer);
 var favoritesJewel = $(document.createElement('div'));
 var favoritesA = $(document.createElement('a'));
@@ -25,7 +25,8 @@ favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
 /////////////////////////////////////////////////////////////////////////////////////////////    
-var buttonContainers = $(document.getElementsByClassName("_5pcp _5vsi")).children("div");
+
+var buttonContainers = $("._5pcp._5vsi").children("div");
 var button = $(document.createElement('label'));
 var input = $(document.createElement("input"));
 
@@ -49,10 +50,19 @@ buttonContainers.append(button);
 
 
 $(document).scroll(function() {
-   if(buttonContainers.contains(button)){
-       console.log("has button"); 
-       }
-    else{
-        buttonContainers.append(button);
+  buttonContainers = $("._5pcp._5vsi");
+  for (var i = buttonContainers.length - 1; i >= 0; i--) {
+    if ($.contains($(buttonContainers[i]), button) == false) {
+      console.log("add button");
+      $(buttonContainers[i]).append(button);
     }
+  };
 });
+
+
+
+
+
+
+
+

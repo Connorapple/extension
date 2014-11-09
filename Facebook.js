@@ -45,8 +45,11 @@ input.attr({
     value: "Bookmark"
 });
 
+button.click( function(e) {
+  getId(e.target);
+});
 button.append(input);
-buttonContainers.append(button);
+button.appendTo(buttonContainers);
 
 var date = new Date();
 var lastDateCheck = date.getTime();
@@ -66,10 +69,18 @@ $(document).scroll(function() {
     };
 
     button.appendTo(buttonsNeedingEdits);
+    button.click( function(e) {
+      getId(e.target);
+    });
     lastDateCheck = dateCheck;
   };
 });
 
+function getId(button) {
+  var post = $(button).parents(".userContentWrapper._5pcr._3ccb");
+  var postLink = post.find("._5pcq");
+  console.log(postLink.attr("href"));
+}
 
 
 

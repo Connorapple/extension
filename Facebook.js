@@ -25,7 +25,7 @@ favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
 /////////////////////////////////////////////////////////////////////////////////////////////    
-
+var post = $("._4-u2.mbm._5jmm._5pat._5v3q._5x16").children($("._5pcp._5vsi"));
 var buttonContainers = $("._5pcp._5vsi").children("div");
 var button = $(document.createElement('label'));
 var input = $(document.createElement("input"));
@@ -46,18 +46,29 @@ input.attr({
 
 button.append(input);
 buttonContainers.append(button);
-
+post.append(buttonContainers);
 
 
 $(document).scroll(function() {
   buttonContainers = $("._5pcp._5vsi");
-  for (var i = buttonContainers.length - 1; i >= 0; i--) {
-    if ($.contains($(buttonContainers[i]), button) == false) {
+  for (var i = post.length -1; i >=0 ; i--) {
+    if ($.contains($(post[i]), button) == false) {
       console.log("add button");
-      $(buttonContainers[i]).append(button);
+      $(post[i]).append(button);
     }
   };
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

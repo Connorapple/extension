@@ -25,7 +25,7 @@ favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
 $("#fbFavoritesJewel").append('<div class="__tw uiToggleFlyout" id="fbFavoritesFlyout"><div class="jewelBeeperHeader"><div class="beeperNubWrapper"><div class="beeperNub" id="myBeeper"></div></div></div></div>');
-$("#fbFavoritesFlyout").append('<div class="jewelHighlight uiScrollableArea fade uiScrollableAreaWithShadow"><ul><li>CONNOR</li><li>FUCK</li></ul></div>');
+$("#fbFavoritesFlyout").append('<div class="jewelHighlight uiScrollableArea fade uiScrollableAreaWithShadow"><ul id="bookmarksList"></ul></div>');
 
 $(".uiToggle._4962").click(function(e) {
     var parentJewel = $(e.target).parents(".uiToggle._4962");
@@ -96,9 +96,9 @@ $(document).scroll(function() {
     };
 
     button.appendTo(buttonsNeedingEdits);
-    button.click( function(e) {
-      getId(e.target);
-    });
+    // button.click( function(e) {
+    //   getId(e.target);
+    // });
     lastDateCheck = dateCheck;
   };
 });
@@ -106,9 +106,37 @@ $(document).scroll(function() {
 function getId(button) {
   var post = $(button).parents(".userContentWrapper._5pcr._3ccb");
   var postLink = post.find("._5pcq");
+  var timeStamp = postLink.children("abbr").attr("title");
+  var href = postLink.attr("href");
+
+  var nameItems = post.find(".fwb.fcg").find('*');
+  var name = "";
+
+  console.log(nameItems.length);
+  for (var i = nameItems.length - 1; i >= 0; i--) {
+    console.log($(nameItems[i]).text());
+    name = name + $(nameItems[i]).text() + " ";
+  };
+
+
+  chrome.storage.sync.get("links", function(items) {
+    var links = items.links;
+    links.push(href);
+    chrome.storage.sync.set({'links': links}, function() {
+      
+    });
+  });
+
+  $("#bookmarksList").append("<li><a href='" +  href + "'>" + name + " –– " + timeStamp + "</a></li>")
   console.log(postLink.attr("href"));
 }
 
+chrome.storage.sync.get("links", function(items) {
+  var links = items.links;
+  for (var i = links.length - 1; i >= 0; i--) {
+    $("#bookmarksList").append("<li><a href='" +  links[i] + "'>LINK</a></li>");
+  };
+});
 
 
 

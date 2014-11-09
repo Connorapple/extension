@@ -25,40 +25,56 @@ favoritesJewel.append(favoritesA);
 jewelContainer.append(favoritesJewel);
 
 /////////////////////////////////////////////////////////////////////////////////////////////    
-var post = $("._4-u2.mbm._5jmm._5pat._5v3q._5x16").children($("._5pcp._5vsi"));
+// var post = $("._4-u2.mbm._5jmm._5pat._5v3q._5x16").children($("._5pcp._5vsi"));
 var buttonContainers = $("._5pcp._5vsi").children("div");
 var button = $(document.createElement('label'));
 var input = $(document.createElement("input"));
 
 button.attr({
-    class:"uiLinkButton",
+    class:"uiLinkButton postBookmarkButton",
     title:"Bookmark this"
 });
+
 button.css({
     float: "right"
 });
 
 input.attr({
-    class:"uiLinkButtonInput postBookmarkButton",
+    class:"uiLinkButtonInput",
     type:"button",
     value: "Bookmark"
 });
 
 button.append(input);
 buttonContainers.append(button);
-post.append(buttonContainers);
 
+var date = new Date();
+var lastDateCheck = date.getTime();
 
 $(document).scroll(function() {
-  buttonContainers = $("._5pcp._5vsi");
-  for (var i = buttonContainers.length -1; i >=0 ; i--) {
-    console.log($(buttonContainers[i]).children(".postBookmarkButton").length);
-    if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
-      console.log("false");
-      $(post[i]).append(button);
-    } else {
-      console.log("true");
-    }
+  date = new Date();
+  var dateCheck = date.getTime();
+
+  if (dateCheck - lastDateCheck > 1000) {
+    buttonContainers = $("._5pcp._5vsi").children("div");
+
+    for (var i = buttonContainers.length - 1; i >= 0; i--) {
+      console.log(buttonContainers[i]);
+    };
+
+    // var editedButtons = $("._5pcp._5vsi div:contains('.postBookmarkButton')");
+    // console.log(editedButtons.length);
+    // for (var i = buttonContainers.length - 1; i >=0 ; i--) {
+
+    //   if ($(buttonContainers[i]).children(".postBookmarkButton").length == 0) {
+    //     console.log("false");
+    //     $(buttonContainers[i]).append(button);
+    //   } else {
+    //     console.log("true");
+    //   }
+    // };
+
+    lastDateCheck = dateCheck;
   };
 });
 

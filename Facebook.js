@@ -19,6 +19,11 @@ favoritesA.attr({
 favoritesimg.attr({
    src: chrome.extension.getURL('img/bookmarkButton.png')
 });
+favoritesimg.css({
+  width: "27px",
+  height: "27px",
+  "padding-top": "3px"
+})
 
 favoritesA.append(favoritesimg);
 favoritesJewel.append(favoritesA);

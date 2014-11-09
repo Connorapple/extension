@@ -109,32 +109,44 @@ function getId(button) {
   var timeStamp = postLink.children("abbr").attr("title");
   var href = postLink.attr("href");
 
-  var nameItems = (post.find(".fwb.fcg")[0]).getElementsByTagName("*");
-  var name = "";
+  var nameItems = post.find(".fcg").get(0).getElementsByTagName("*");
+  var name = $(nameItems).first().text() + " –– " + timeStamp;
+  // console.log("nameItems");
+  // console.log(nameItems);
+  // var name = "";
 
-  console.log(nameItems.length);
-  for (var i = 0; i < nameItems.length; i++) {
-    console.log($(nameItems[i]).text());
-    name = name + $(nameItems[i]).text() + " ";
-  };
+  // console.log(nameItems.length);
+  // for (var i = 0; i < nameItems.length; i++) {
+  //   name = name + $(nameItems[i]).text() + " ";
+  // };
 
 
-  chrome.storage.sync.get("links", function(items) {
-    var links = items.links;
-    links.push(href);
-    chrome.storage.sync.set({'links': links}, function() {
-      
+  chrome.storage.sync.get("bookmarks", function(items) {
+
+    var bookmarks;
+    if (items.bookmarks === undefined) {
+      bookmarks = [];
+    } else {
+      bookmarks = items.bookmarks;  
+    }
+    
+    bookmarks.push({
+      link: "href",
+      name: name
+    });
+    chrome.storage.sync.set({'bookmarks': bookmarks}, function() {
+      console.log(bookmarks);
     });
   });
 
-  $("#bookmarksList").append("<li><a href='" +  href + "'>" + name + " –– " + timeStamp + "</a></li>")
-  console.log(postLink.attr("href"));
+  $("#bookmarksList").append("<li><a href='" +  href + "'>" + name + "</a></li>")
+  console.log(name);
 }
 
-chrome.storage.sync.get("links", function(items) {
-  var links = items.links;
-  for (var i = links.length - 1; i >= 0; i--) {
-    $("#bookmarksList").append("<li><a href='" +  links[i] + "'>LINK</a></li>");
+chrome.storage.sync.get("bookmarks", function(items) {
+  var bookmarks = items.bookmarks;
+  for (var i = bookmarks.length - 1; i >= 0; i--) {
+    $("#bookmarksList").append("<li><a href='" +  bookmarks[i].link + "'>" +  bookmarks[i].name + "</a></li>");
   };
 });
 
